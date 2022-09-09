@@ -1,0 +1,6 @@
+.navbar-style {
+    display: grid;
+    text-align: justify;
+    justify-content: space-around;
+    background-color: dimgray;
+}
