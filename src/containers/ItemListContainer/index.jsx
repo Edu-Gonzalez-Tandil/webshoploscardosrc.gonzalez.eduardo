@@ -3,11 +3,16 @@ import './style.css';
 import ItemCount from '../../components/ItemCount';
 
 const ItemListContainer = ({greeting}) => {
+
+    const agregarAlCarrito = (cantidad) => {
+        console.log(`Se agrego la cantidad ${cantidad} al carrito`);
+    }
+
     return (
         <div className='item-list-container'>
             <h1>{greeting}</h1>
             <span>
-            <ItemCount/>
+            <ItemCount initial={1} stock={5} onAdd={agregarAlCarrito}/>
             </span>
         </div>
     )
