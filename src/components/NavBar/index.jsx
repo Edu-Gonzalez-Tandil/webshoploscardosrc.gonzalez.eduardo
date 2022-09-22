@@ -1,59 +1,64 @@
-import React from 'react';
-import './style.css';
-import CartWidget from '../CartWidget';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import "./style.css";
+import CartWidget from "../CartWidget";
+import { useNavigate } from "react-router-dom";
+
+let categorias = [
+  {
+    id: "1",
+    nombre: "Rugby",
+    href: "rugby",
+  },
+  {
+    id: "2",
+    nombre: "Hockey",
+    href: "hockey",
+  },
+  {
+    id: "3",
+    nombre: "Merchandising",
+    href: "merchandising",
+  },
+];
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
-    <>
-    <div className='navbar-style'>
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">TIENDA</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  RUGBY
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  HOCKEY
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  MERCHANDACING
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li>
-              <CartWidget/>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </>
-  )
-}
+    <Navbar bg="light" expand="lg">
+      <Container fluid>
+        <Navbar.Brand onClick={() => navigate("/")}>
+          <img src="/logo.jpg" width={50} height={50} alt="logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
+          >
+            <Nav.Link href="/">Shop Los Cardos</Nav.Link>
+            <NavDropdown title="Categorias" id="navbarScrollingDropdown">
+              {categorias.map((categoria) => (
+                <NavDropdown.Item
+                  key={categoria.id}
+                  href={`/categoria/${categoria.href}`}
+                >
+                  {categoria.nombre}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+          </Nav>
+          <Nav.Link href="/cart">
+            <CartWidget />
+          </Nav.Link>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
 
 export default NavBar;

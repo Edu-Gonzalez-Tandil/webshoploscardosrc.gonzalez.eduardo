@@ -1,0 +1,21 @@
+.container {
+  margin-top: 40px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.agregar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.imagen-producto {
+  width: 350px;
+}
